@@ -1,5 +1,5 @@
 {
-    "name": "codeception/aspect-mock",
+    "name": "iceshack/aspect-mock",
     "description": "Experimental Mocking Framework powered by Aspects",
     "authors": [
         {
