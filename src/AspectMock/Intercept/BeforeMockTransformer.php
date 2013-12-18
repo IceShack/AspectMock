@@ -74,7 +74,7 @@ class BeforeMockTransformer extends WeavingTransformer {
                         : $this->before;
                     $reflectedParams = $method->getParameters();
 
-                    $params = [];
+                    $params = array();
 
                     foreach ($reflectedParams as $reflectedParam) {
                         /** @var $reflectedParam ReflectionParameter  **/

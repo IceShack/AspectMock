@@ -11,8 +11,8 @@ use AspectMock\Proxy\InstanceProxy;
  */
 class Registry {
 
-    protected static $classCalls = [];
-    protected static $instanceCalls = [];
+    protected static $classCalls = array();
+    protected static $instanceCalls = array();
     protected static $ns = '';
 
     /**
@@ -39,7 +39,7 @@ class Registry {
     {
         return isset(self::$classCalls[$class])
             ? self::$classCalls[$class]
-            : [];
+            : array();
     }
 
     static function getInstanceCallsFor($instance)
@@ -47,7 +47,7 @@ class Registry {
         $oid = spl_object_hash($instance);
         return isset(self::$instanceCalls[$oid])
             ? self::$instanceCalls[$oid]
-            : [];
+            : array();
     }
 
     static function clean($classOrInstance = null)
@@ -69,14 +69,14 @@ class Registry {
 
     static function cleanInvocations()
     {
-        self::$instanceCalls = [];
-        self::$classCalls = [];
+        self::$instanceCalls = array();
+        self::$classCalls = array();
     }
 
     static function registerInstanceCall($instance, $method, $args = array())
     {
         $oid = spl_object_hash($instance);
-        if (!isset(self::$instanceCalls[$oid])) self::$instanceCalls[$oid] = [];
+        if (!isset(self::$instanceCalls[$oid])) self::$instanceCalls[$oid] = array();
 
         isset(self::$instanceCalls[$oid][$method])
             ? self::$instanceCalls[$oid][$method][] = $args
@@ -86,7 +86,7 @@ class Registry {
 
     static function registerClassCall($class, $method, $args = array())
     {
-        if (!isset(self::$classCalls[$class])) self::$classCalls[$class] = [];
+        if (!isset(self::$classCalls[$class])) self::$classCalls[$class] = array();
 
         isset(self::$classCalls[$class][$method])
             ? self::$classCalls[$class][$method][] = $args

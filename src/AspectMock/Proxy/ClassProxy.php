@@ -49,7 +49,7 @@ class ClassProxy extends Verifier  {
         $calls = Registry::getClassCallsFor($this->className);
         return isset($calls[$method])
             ? $calls[$method]
-            : [];
+            : array();
     }
 
     /**

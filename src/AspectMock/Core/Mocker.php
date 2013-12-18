@@ -5,10 +5,10 @@ use AspectMock\Intercept\MethodInvocation;
 
 class Mocker implements Aspect {
 
-    protected $classMap = [];
-    protected $objectMap = [];
-    protected $funcMap = [];
-    protected $methodMap = ['__call', '__callStatic'];
+    protected $classMap = array();
+    protected $objectMap = array();
+    protected $funcMap = array();
+    protected $methodMap = array('__call', '__callStatic');
 
     public function fakeMethodsAndRegisterCalls($class, $declaredClass, $method, $params, $static)
     {
@@ -175,10 +175,10 @@ class Mocker implements Aspect {
     public function clean($objectOrClass = null)
     {
         if (!$objectOrClass) {
-            $this->classMap = [];
-            $this->objectMap = [];
-            $this->methodMap = ['__call','__callStatic'];
-            $this->funcMap = [];
+            $this->classMap = array();
+            $this->objectMap = array();
+            $this->methodMap = array('__call','__callStatic');
+            $this->funcMap = array();
         } elseif (is_object($objectOrClass)) {
             unset($this->objectMap[spl_object_hash($objectOrClass)]);
         } else {

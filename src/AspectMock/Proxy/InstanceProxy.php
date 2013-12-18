@@ -79,7 +79,7 @@ class InstanceProxy extends Verifier {
         $calls = Registry::getInstanceCallsFor($this->instance);
         return isset($calls[$method])
             ? $calls[$method]
-            : [];
+            : array();
     }
     
 
@@ -87,10 +87,10 @@ class InstanceProxy extends Verifier {
     public function __call($method, $args)
     {
         if (method_exists($this->instance, $method)) {
-            return call_user_func_array([$this->instance, $method], $args);
+            return call_user_func_array(array($this->instance, $method), $args);
         }
         if (method_exists($this->instance, '__call')) {
-            return call_user_func([$this->instance, '__call'], $method, $args);
+            return call_user_func(array($this->instance, '__call'), $method, $args);
         }
     }
 
@@ -100,7 +100,7 @@ class InstanceProxy extends Verifier {
             return $this->class = new ClassProxy($this->className);
         }
         if (method_exists($this->instance, '__get')) {
-            return call_user_func([$this->instance, '__get'], $property);
+            return call_user_func(array($this->instance, '__get'), $property);
         }
         return $this->instance->$property;
     }
